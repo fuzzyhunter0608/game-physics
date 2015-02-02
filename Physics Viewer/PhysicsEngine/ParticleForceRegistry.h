@@ -1,0 +1,28 @@
+#pragma once
+
+#include <vector>
+
+#include "ParticleForceGenerator.h"
+
+using namespace std;
+
+struct ParticleForceRegistration
+{
+	Particle* particle;
+	ParticleForceGenerator* fg;
+};
+typedef vector<ParticleForceRegistration> Registry;
+
+class ParticleForceRegistry
+{
+public:
+	void add(Particle* particle, ParticleForceGenerator* fg);
+	void remove(Particle* particle, ParticleForceGenerator* fg);
+	void clear();
+	
+	void updateForces(real duration);
+
+protected:
+	Registry mRegistrations;
+};
+

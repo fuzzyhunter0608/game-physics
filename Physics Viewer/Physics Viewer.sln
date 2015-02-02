@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PhysicsViewer", "EGP300-proj1\EGP300-proj1.vcxproj", "{D4F2C127-EFC4-440C-85C8-E3279169551C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{062B06E9-3A45-4CE3-B551-70F75D20B33C} = {062B06E9-3A45-4CE3-B551-70F75D20B33C}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PhysicsViewerTest", "PhysicsViewerTest\PhysicsViewerTest.vcxproj", "{F50548D3-F090-403D-A31C-5B06CECEC994}"
+	ProjectSection(ProjectDependencies) = postProject
+		{D4F2C127-EFC4-440C-85C8-E3279169551C} = {D4F2C127-EFC4-440C-85C8-E3279169551C}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PhysicsEngine", "PhysicsEngine\PhysicsEngine.vcxproj", "{062B06E9-3A45-4CE3-B551-70F75D20B33C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D4F2C127-EFC4-440C-85C8-E3279169551C}.Debug|Win32.ActiveCfg = Debug|Win32
+		{D4F2C127-EFC4-440C-85C8-E3279169551C}.Debug|Win32.Build.0 = Debug|Win32
+		{D4F2C127-EFC4-440C-85C8-E3279169551C}.Release|Win32.ActiveCfg = Release|Win32
+		{D4F2C127-EFC4-440C-85C8-E3279169551C}.Release|Win32.Build.0 = Release|Win32
+		{F50548D3-F090-403D-A31C-5B06CECEC994}.Debug|Win32.ActiveCfg = Debug|Win32
+		{F50548D3-F090-403D-A31C-5B06CECEC994}.Debug|Win32.Build.0 = Debug|Win32
+		{F50548D3-F090-403D-A31C-5B06CECEC994}.Release|Win32.ActiveCfg = Release|Win32
+		{F50548D3-F090-403D-A31C-5B06CECEC994}.Release|Win32.Build.0 = Release|Win32
+		{062B06E9-3A45-4CE3-B551-70F75D20B33C}.Debug|Win32.ActiveCfg = Debug|Win32
+		{062B06E9-3A45-4CE3-B551-70F75D20B33C}.Debug|Win32.Build.0 = Debug|Win32
+		{062B06E9-3A45-4CE3-B551-70F75D20B33C}.Release|Win32.ActiveCfg = Release|Win32
+		{062B06E9-3A45-4CE3-B551-70F75D20B33C}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		Qt5Version = $(DefaultQtVersion)
+	EndGlobalSection
+EndGlobal
