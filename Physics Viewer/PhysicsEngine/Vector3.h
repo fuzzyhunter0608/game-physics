@@ -17,6 +17,8 @@ public:
 	Vector3(real x, real y, real z);
 
 	// Functions
+	void AddScaledVector(const Vector3& vector, real scale);
+
 	real Length() const;
 	real LengthSqr() const;
 	Vector3 Normalized() const;

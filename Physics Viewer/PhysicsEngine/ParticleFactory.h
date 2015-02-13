@@ -2,23 +2,10 @@
 
 #include "Particle.h"
 
-enum Planets
-{
-	SUN,
-	MERCURY,
-	VENUS,
-	EARTH,
-	MOON,
-	MARS,
-	JUPITER,
-	SATURN,
-	URANUS,
-	NEPTUNE
-};
 
 class ParticleFactory
 {
 public:
-	Particle* GetParticle(Planets planet);
+	Particle* GetParticle(real mass, Vector3 position, Vector3 velocity, real damping);
 };
 

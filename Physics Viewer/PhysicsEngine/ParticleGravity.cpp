@@ -17,7 +17,7 @@ void ParticleGravity::updateForce(Particle* particle, real duration)
 	real scalar = gravConst * particle->getMass() * mpAttractionParticle->getMass() / distanceSqr;
 	direction *= scalar;
 
-	std::cout << direction.ToString() << endl;
+	//std::cout << direction.Length() << endl;
 
 	particle->addForce(direction);
 }

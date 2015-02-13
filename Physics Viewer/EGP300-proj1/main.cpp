@@ -11,6 +11,7 @@
 #include "PhysicsEngine/ParticleForceRegistry.h"
 #include "PhysicsEngine/ParticleGravity.h"
 #include "GameObject.h"
+#include "SolarSystem.h"
 
 using namespace std;
 
@@ -29,6 +30,7 @@ Camera camera;
 Model* planetModel;
 Particle* sunParticle, *earthParticle;
 GameObject sunObject, earthObject;
+SolarSystem* solarSystem;
 
 ModelFactory modelFactory;
 ParticleFactory particleFactory;
@@ -61,7 +63,9 @@ void myInit()
 	glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
 	shaderManager.InitializeStockShaders();
 
-	planetModel = modelFactory.GetModel(filename);
+	solarSystem = new SolarSystem();
+
+	/*planetModel = modelFactory.GetModel(filename);
 	sunObject.SetModel(planetModel);
 	earthObject.SetModel(planetModel);
 
@@ -72,10 +76,10 @@ void myInit()
 	earthObject.SetPhysics(earthParticle);
 
 	sunObject.SetScale(Vector3(10)); 
-	earthObject.SetScale(Vector3(1));
+	earthObject.SetScale(Vector3(1));*/
 
-	gravityGenerator = new ParticleGravity(sunParticle);
-	registry.add(earthParticle, gravityGenerator); // Sun's gravity affecting Earth
+	//gravityGenerator = new ParticleGravity(sunParticle);
+	//registry.add(earthParticle, gravityGenerator); // Sun's gravity affecting Earth
 
 	//Projection
 	viewFrustum.SetPerspective(35.0f, (float)(width/height), 1.0f, 1000.0f);
@@ -90,39 +94,30 @@ void RenderScene(void)
 	//Swap Colors
 	GLfloat vColor[]=  { 1.0f, 1.0f, 1.0f, 1.0f };
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
+	float posLight1[] = { 1.0f, 1.0f, 1.0f, 0.0f };
 
 	M3DMatrix44f mModel, mView, mModelView;
-
-	//Model
-	sunObject.GetModelMatrix(mModel);
 
 	//View
 	camera.getViewMatrix(mView);
 
-	//Model-View
+	//Sun
+	solarSystem->GetSun()->GetModelMatrix(mModel);
 	m3dMatrixMultiply44(mModelView, mView, mModel);
-
-	//Model-View-Projection
-	m3dMatrixMultiply44(mvpMatrix, viewFrustum.GetProjectionMatrix(), mModelView);
-
-	float posLight1[] = { 1.0f, 1.0f, 1.0f, 0.0f };
-
 	shaderManager.UseStockShader(GLT_SHADER_POINT_LIGHT_DIFF, mModelView, viewFrustum.GetProjectionMatrix(), posLight1, colorYellow);
+	solarSystem->GetSun()->Draw();
 
-	sunObject.Draw();
-
-	//Model
-	earthObject.GetModelMatrix(mModel);
-
-	//Model-View
+	//Mercury
+	solarSystem->GetMercury()->GetModelMatrix(mModel);
 	m3dMatrixMultiply44(mModelView, mView, mModel);
+	shaderManager.UseStockShader(GLT_SHADER_POINT_LIGHT_DIFF, mModelView, viewFrustum.GetProjectionMatrix(), posLight1, colorYellow);
+	solarSystem->GetMercury()->Draw();
 
-	//Model-View-Projection
-	m3dMatrixMultiply44(mvpMatrix, viewFrustum.GetProjectionMatrix(), mModelView);
-
+	//Earth
+	solarSystem->GetEarth()->GetModelMatrix(mModel);
+	m3dMatrixMultiply44(mModelView, mView, mModel);
 	shaderManager.UseStockShader(GLT_SHADER_POINT_LIGHT_DIFF, mModelView, viewFrustum.GetProjectionMatrix(), posLight1, colorBlue);
-
-	earthObject.Draw();
+	solarSystem->GetEarth()->Draw();
 
 	glutSwapBuffers();
 }
@@ -214,13 +209,7 @@ void myUpdate()
 	float deltaTime = (timeSinceStart - oldTimeFromStart) / 1000.0f;
 	oldTimeFromStart = timeSinceStart;
 
-	Vector3 newDirection = Vector3::Cross((sunParticle->getPosition() - earthParticle->getPosition()), Vector3(0, 0, 1)).Normalized();
-	earthParticle->setVelocity(newDirection * 0.1);
-
-	registry.updateForces(3);
-
-	sunObject.Update(deltaTime);
-	earthObject.Update(deltaTime);
+	solarSystem->Update(deltaTime);
 
 	glutPostRedisplay();
 }
@@ -271,9 +260,12 @@ int main(int argc, char* argv[])
 
 	glutMainLoop();
 
-	delete planetModel;
-	delete sunParticle, earthParticle;
-	delete gravityGenerator;
+	//delete planetModel;
+	//delete sunParticle;
+	//delete earthParticle;
+	//delete gravityGenerator;
+
+	delete solarSystem;
 
 	return 0;
 }

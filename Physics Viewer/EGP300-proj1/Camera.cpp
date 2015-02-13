@@ -13,7 +13,7 @@ Camera::~Camera(void)
 
 void Camera::reset()
 {
-	setPosition(0.0f, -2.0f, -100.0f);
+	setPosition(0.0f, -2.0f, -500.0f);
 	setRotation(0.0f, 0.0f, 0.0f);
 }
 

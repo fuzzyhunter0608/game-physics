@@ -1,22 +1,13 @@
 #include "ParticleFactory.h"
 
-Particle* ParticleFactory::GetParticle(Planets planet)
+Particle* ParticleFactory::GetParticle(real mass, Vector3 position, Vector3 velocity, real damping)
 {
 	Particle* newParticle = new Particle();
 
-	switch(planet)
-	{
-	case SUN:
-		newParticle->setMass(333000 * 5000);
-		newParticle->setPosition(Vector3::zero);
-		break;
-	case EARTH:
-		newParticle->setMass(5000);
-		newParticle->setPosition(18.4, 0, 0);
-		newParticle->setVelocity(0, 0.1, 0);
-		newParticle->setDamping(0.99);
-		break;
-	}
+	newParticle->setMass(mass);
+	newParticle->setPosition(position);
+	newParticle->setVelocity(velocity);
+	newParticle->setDamping(damping);
 
 	return newParticle;
 }

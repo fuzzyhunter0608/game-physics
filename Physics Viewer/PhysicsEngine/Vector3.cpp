@@ -25,12 +25,12 @@ Vector3::Vector3(real x, real y, real z)
 }
 
 // Functions
-float Vector3::Length() const
+real Vector3::Length() const
 {
 	return sqrt(LengthSqr());
 }
 
-float Vector3::LengthSqr() const
+real Vector3::LengthSqr() const
 {
 	return x*x + y*y + z*z;
 }
@@ -162,7 +162,7 @@ bool Vector3::operator!=(const Vector3& rhs) const
 }
 
 // Static Functions
-float Vector3::Dot(const Vector3& lhs, const Vector3& rhs)
+real Vector3::Dot(const Vector3& lhs, const Vector3& rhs)
 {
 	return (lhs.x * rhs.x) + (lhs.y * rhs.y) + (lhs.z * rhs.z);
 }
@@ -179,5 +179,12 @@ Vector3 Vector3::Lerp(const Vector3& from, const Vector3& to, const float t)
 	return Vector3(from.x + (to.x - from.x) * t,
 				   from.y + (to.y - from.y) * t,
 				   from.z + (to.z - from.z) * t);
+}
+
+void Vector3::AddScaledVector(const Vector3& vector, real scale)
+{
+	x += vector.x * scale;
+	y += vector.y * scale;
+	z += vector.z * scale;
 }
 

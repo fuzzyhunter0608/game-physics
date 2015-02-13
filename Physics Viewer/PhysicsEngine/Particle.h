@@ -19,7 +19,7 @@ public:
 	void setDamping(const real damping) { mDamping = damping; }
 	real getDamping() const { return mDamping; }
 
-	void setMass(const real mass) { mInverseMass = 1 / mass; }
+	void setMass(const real mass) { mInverseMass = (real)1.0 / mass; }
 	real getMass() const { return 1 / mInverseMass; }
 	void setInverseMass(const real mass) { mInverseMass = mass; }
 	real getInverseMass(const real mass) { return mInverseMass; }

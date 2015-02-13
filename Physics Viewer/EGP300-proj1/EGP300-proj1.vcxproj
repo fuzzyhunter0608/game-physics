@@ -12,11 +12,14 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="Color.cpp" />
     <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="Debug.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Model.cpp" />
     <ClCompile Include="ModelFactory.cpp" />
     <ClCompile Include="Moveable.cpp" />
+    <ClCompile Include="SolarSystem.cpp" />
     <ClCompile Include="tinyxml2.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -27,13 +30,17 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="Color.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="Geometry.h" />
+    <ClInclude Include="Debug.h" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="ModelFactory.h" />
     <ClInclude Include="ModelInfo.h" />
     <ClInclude Include="Moveable.h" />
+    <ClInclude Include="PlanetData.h" />
     <ClInclude Include="Polylist.h" />
+    <ClInclude Include="SolarSystem.h" />
     <ClInclude Include="Source.h" />
     <ClInclude Include="tinyxml2.h" />
     <ClInclude Include="Vertex.h" />

@@ -23,5 +23,6 @@ private:
 	Model* mModel;
 
 	Vector3 mScale;
+	Vector3 mDisplayPosition;
 };
 
