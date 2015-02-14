@@ -34,6 +34,7 @@ public:
 private:
 	GLShaderManager mShaderManager;
 	ParticleForceRegistry mRegistry;
+	real mTimer;
 
 	std::vector<PlanetData> mData;
 

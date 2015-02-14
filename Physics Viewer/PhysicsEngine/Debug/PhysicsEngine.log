@@ -1,9 +1,15 @@
-﻿Build started 2/13/2015 2:41:58 PM.
+﻿Build started 2/14/2015 3:29:14 PM.
      1>Project "C:\Users\Eric\Desktop\Game Physics\Physics Viewer\PhysicsEngine\PhysicsEngine.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Particle.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Particle.cpp ParticleFactory.cpp ParticleForceRegistry.cpp ParticleGravity.cpp Vector3.cpp
+         Vector3.cpp
+         ParticleGravity.cpp
+     1>c:\users\eric\desktop\game physics\physics viewer\physicsengine\particlegravity.cpp(12): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+         ParticleForceRegistry.cpp
+         ParticleFactory.cpp
+         Generating Code...
+         Skipping... (no relevant changes detected)
          Particle.cpp
-     1>c:\users\eric\desktop\game physics\physics viewer\physicsengine\particle.cpp(18): warning C4244: 'argument' : conversion from 'real' to 'float', possible loss of data
        Lib:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\Lib.exe /OUT:"C:\Users\Eric\Desktop\Game Physics\Physics Viewer\Debug\PhysicsEngine.lib" /NOLOGO Debug\Particle.obj
          Debug\ParticleFactory.obj
@@ -15,4 +21,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:00.51
+Time Elapsed 00:00:01.56

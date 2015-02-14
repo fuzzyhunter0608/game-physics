@@ -8,14 +8,21 @@ void Particle::integrate(real duration)
 
 	if (mInverseMass <= 0.0f) return;
 
-	mPosition.AddScaledVector(mVelocity, duration);
+	//Timestep
+	int numSteps = 128;
+	real timestep = duration / numSteps;
 
-	Vector3 resultingAcc = mAcceleration;
-	resultingAcc.AddScaledVector(forceAccum, mInverseMass);
+	for (int i = 1; i <= numSteps; ++i)
+	{
+		mPosition.AddScaledVector(mVelocity, timestep);
 
-	mVelocity.AddScaledVector(resultingAcc, duration);
+		Vector3 resultingAcc = mAcceleration;
+		resultingAcc.AddScaledVector(forceAccum, mInverseMass);
 
-	mVelocity *= powf(mDamping, duration);
+		mVelocity.AddScaledVector(resultingAcc, timestep);
+
+		mVelocity *= powf(mDamping, timestep);
+	}
 
 	std::cout << mVelocity.Length() << endl;
 

@@ -12,6 +12,7 @@
 #include "PhysicsEngine/ParticleGravity.h"
 #include "GameObject.h"
 #include "SolarSystem.h"
+#include "Color.h"
 
 using namespace std;
 
@@ -65,22 +66,6 @@ void myInit()
 
 	solarSystem = new SolarSystem();
 
-	/*planetModel = modelFactory.GetModel(filename);
-	sunObject.SetModel(planetModel);
-	earthObject.SetModel(planetModel);
-
-	sunParticle = particleFactory.GetParticle(SUN);
-	earthParticle = particleFactory.GetParticle(EARTH);
-	
-	sunObject.SetPhysics(sunParticle);
-	earthObject.SetPhysics(earthParticle);
-
-	sunObject.SetScale(Vector3(10)); 
-	earthObject.SetScale(Vector3(1));*/
-
-	//gravityGenerator = new ParticleGravity(sunParticle);
-	//registry.add(earthParticle, gravityGenerator); // Sun's gravity affecting Earth
-
 	//Projection
 	viewFrustum.SetPerspective(35.0f, (float)(width/height), 1.0f, 1000.0f);
 
@@ -104,20 +89,56 @@ void RenderScene(void)
 	//Sun
 	solarSystem->GetSun()->GetModelMatrix(mModel);
 	m3dMatrixMultiply44(mModelView, mView, mModel);
-	shaderManager.UseStockShader(GLT_SHADER_POINT_LIGHT_DIFF, mModelView, viewFrustum.GetProjectionMatrix(), posLight1, colorYellow);
+	shaderManager.UseStockShader(GLT_SHADER_POINT_LIGHT_DIFF, mModelView, viewFrustum.GetProjectionMatrix(), posLight1, Color::Yellow.GetColor());
 	solarSystem->GetSun()->Draw();
 
 	//Mercury
 	solarSystem->GetMercury()->GetModelMatrix(mModel);
 	m3dMatrixMultiply44(mModelView, mView, mModel);
-	shaderManager.UseStockShader(GLT_SHADER_POINT_LIGHT_DIFF, mModelView, viewFrustum.GetProjectionMatrix(), posLight1, colorYellow);
+	shaderManager.UseStockShader(GLT_SHADER_POINT_LIGHT_DIFF, mModelView, viewFrustum.GetProjectionMatrix(), posLight1, Color::Gray.GetColor());
 	solarSystem->GetMercury()->Draw();
+
+	//Venus
+	solarSystem->GetVenus()->GetModelMatrix(mModel);
+	m3dMatrixMultiply44(mModelView, mView, mModel);
+	shaderManager.UseStockShader(GLT_SHADER_POINT_LIGHT_DIFF, mModelView, viewFrustum.GetProjectionMatrix(), posLight1, Color::Tan.GetColor());
+	solarSystem->GetVenus()->Draw();
 
 	//Earth
 	solarSystem->GetEarth()->GetModelMatrix(mModel);
 	m3dMatrixMultiply44(mModelView, mView, mModel);
-	shaderManager.UseStockShader(GLT_SHADER_POINT_LIGHT_DIFF, mModelView, viewFrustum.GetProjectionMatrix(), posLight1, colorBlue);
+	shaderManager.UseStockShader(GLT_SHADER_POINT_LIGHT_DIFF, mModelView, viewFrustum.GetProjectionMatrix(), posLight1, Color::Blue.GetColor());
 	solarSystem->GetEarth()->Draw();
+
+	//Mars
+	solarSystem->GetMars()->GetModelMatrix(mModel);
+	m3dMatrixMultiply44(mModelView, mView, mModel);
+	shaderManager.UseStockShader(GLT_SHADER_POINT_LIGHT_DIFF, mModelView, viewFrustum.GetProjectionMatrix(), posLight1, Color::Red.GetColor());
+	solarSystem->GetMars()->Draw();
+
+	//Jupiter
+	solarSystem->GetJupiter()->GetModelMatrix(mModel);
+	m3dMatrixMultiply44(mModelView, mView, mModel);
+	shaderManager.UseStockShader(GLT_SHADER_POINT_LIGHT_DIFF, mModelView, viewFrustum.GetProjectionMatrix(), posLight1, Color::Gray.GetColor());
+	solarSystem->GetJupiter()->Draw();
+
+	//Saturn
+	solarSystem->GetSaturn()->GetModelMatrix(mModel);
+	m3dMatrixMultiply44(mModelView, mView, mModel);
+	shaderManager.UseStockShader(GLT_SHADER_POINT_LIGHT_DIFF, mModelView, viewFrustum.GetProjectionMatrix(), posLight1, Color::Tan.GetColor());
+	solarSystem->GetSaturn()->Draw();
+
+	//Uranus
+	solarSystem->GetUranus()->GetModelMatrix(mModel);
+	m3dMatrixMultiply44(mModelView, mView, mModel);
+	shaderManager.UseStockShader(GLT_SHADER_POINT_LIGHT_DIFF, mModelView, viewFrustum.GetProjectionMatrix(), posLight1, Color::Blue.GetColor());
+	solarSystem->GetUranus()->Draw();
+
+	//Neptune
+	solarSystem->GetNeptune()->GetModelMatrix(mModel);
+	m3dMatrixMultiply44(mModelView, mView, mModel);
+	shaderManager.UseStockShader(GLT_SHADER_POINT_LIGHT_DIFF, mModelView, viewFrustum.GetProjectionMatrix(), posLight1, Color::Red.GetColor());
+	solarSystem->GetNeptune()->Draw();
 
 	glutSwapBuffers();
 }

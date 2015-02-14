@@ -12,12 +12,12 @@ GameObject::~GameObject()
 
 void GameObject::Update(float deltaTime)
 {
-	mModel->rotateY(24 * deltaTime);
+	//mModel->rotateY(24 * deltaTime);
 
 	mPhysicsEngine->integrate(deltaTime);
 
 	if (mPhysicsEngine->getPosition() != Vector3::zero)
-		mDisplayPosition = mPhysicsEngine->getPosition() / 3000000000;
+		mDisplayPosition = mPhysicsEngine->getPosition() / 5000000000;
 }
 
 void GameObject::GetModelMatrix(M3DMatrix44f &matrix)
