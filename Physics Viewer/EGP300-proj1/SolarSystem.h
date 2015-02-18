@@ -16,6 +16,7 @@ public:
 	~SolarSystem();
 
 	void LoadData(string filename);
+	void Reset();
 
 	void Update(float deltaTime);
 	void Draw(M3DMatrix44f &view, const M3DMatrix44f &projection, GLShaderManager &shaderManager);
@@ -66,6 +67,7 @@ private:
 		*mVenusGravity,
 		*mEarthGravity,
 		*mMoonGravity,
+		*mMoonSunGravity,
 		*mMarsGravity,
 		*mJupiterGravity,
 		*mSaturnGravity,

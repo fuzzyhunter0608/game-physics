@@ -28,6 +28,7 @@ SolarSystem::SolarSystem()
 	mSaturn.SetModel(mModel);
 	mUranus.SetModel(mModel);
 	mNeptune.SetModel(mModel);
+	mMoon.SetModel(mModel);
 
 	// Load in planetary data
 	LoadData("solarsystem.txt");
@@ -43,6 +44,7 @@ SolarSystem::SolarSystem()
 	mSaturnParticle = particleFactory.GetParticle(mData[6].mass, Vector3(mData[6].distance, 0, 0), Vector3(0, mData[6].velocity, 0), 1);
 	mUranusParticle = particleFactory.GetParticle(mData[7].mass, Vector3(mData[7].distance, 0, 0), Vector3(0, mData[7].velocity, 0), 1);
 	mNeptuneParticle = particleFactory.GetParticle(mData[8].mass, Vector3(mData[8].distance, 0, 0), Vector3(0, mData[8].velocity, 0), 1);
+	mMoonParticle = particleFactory.GetParticle(mData[9].mass, Vector3(mData[9].distance, 0, 0), Vector3(0, mData[9].velocity, 0), 1);
 
 	// Set Scale
 	mSun.SetScale(Vector3(10));
@@ -54,6 +56,7 @@ SolarSystem::SolarSystem()
 	mSaturn.SetScale(Vector3(1));
 	mUranus.SetScale(Vector3(1));
 	mNeptune.SetScale(Vector3(1));
+	mMoon.SetScale(Vector3(0.7));
 
 	// Set Particle
 	mSun.SetPhysics(mSunParticle);
@@ -65,6 +68,7 @@ SolarSystem::SolarSystem()
 	mSaturn.SetPhysics(mSaturnParticle);
 	mUranus.SetPhysics(mUranusParticle);
 	mNeptune.SetPhysics(mNeptuneParticle);
+	mMoon.SetPhysics(mMoonParticle);
 
 	// Gravity Generators
 	mMercuryGravity = new ParticleGravity(mSunParticle);
@@ -83,6 +87,10 @@ SolarSystem::SolarSystem()
 	mRegistry.add(mUranusParticle, mUranusGravity);
 	mNeptuneGravity = new ParticleGravity(mSunParticle);
 	mRegistry.add(mNeptuneParticle, mNeptuneGravity);
+	mMoonGravity = new ParticleGravity(mEarthParticle);
+	mRegistry.add(mMoonParticle, mMoonGravity);
+	mMoonSunGravity = new ParticleGravity(mSunParticle);
+	mRegistry.add(mMoonParticle, mMoonSunGravity);
 }
 
 SolarSystem::~SolarSystem()
@@ -93,7 +101,7 @@ SolarSystem::~SolarSystem()
 	delete mMercuryParticle;
 	delete mVenusParticle;
 	delete mEarthParticle;
-	//delete mMoonParticle;
+	delete mMoonParticle;
 	delete mMarsParticle;
 	delete mJupiterParticle;
 	delete mSaturnParticle;
@@ -103,7 +111,8 @@ SolarSystem::~SolarSystem()
 	delete mMercuryGravity;
 	delete mVenusGravity;
 	delete mEarthGravity;
-	//delete mMoonGravity;
+	delete mMoonGravity;
+	delete mMoonSunGravity;
 	delete mMarsGravity;
 	delete mJupiterGravity;
 	delete mSaturnGravity;
@@ -126,15 +135,7 @@ void SolarSystem::Update(float deltaTime)
 	mSaturn.Update(newTime);
 	mUranus.Update(newTime);
 	mNeptune.Update(newTime);
-
-	mTimer += deltaTime;
-	if (mTimer >= 0.1)
-	{
-		mTimer = 0;
-
-		//mMercuryParticle->setVelocity(mMercuryParticle->getVelocity().Normalized() * mData[1].velocity);
-		//mEarthParticle->setVelocity(mEarthParticle->getVelocity().Normalized() * mData[2].velocity);
-	}
+	mMoon.Update(newTime);
 }
 
 void SolarSystem::Draw(M3DMatrix44f &view, const M3DMatrix44f &projection, GLShaderManager &shaderManager)
@@ -169,4 +170,34 @@ void SolarSystem::LoadData(string filename)
 	}
 
 	file.close();
+}
+
+void SolarSystem::Reset()
+{
+	mMercuryParticle->setPosition(Vector3(mData[1].distance, 0, 0));
+	mMercuryParticle->setVelocity(Vector3(0, mData[1].velocity, 0));
+
+	mVenusParticle->setPosition(Vector3(mData[2].distance, 0, 0));
+	mVenusParticle->setVelocity(Vector3(0, mData[2].velocity, 0));
+
+	mEarthParticle->setPosition(Vector3(mData[3].distance, 0, 0));
+	mEarthParticle->setVelocity(Vector3(0, mData[3].velocity, 0));
+
+	mMarsParticle->setPosition(Vector3(mData[4].distance, 0, 0));
+	mMarsParticle->setVelocity(Vector3(0, mData[4].velocity, 0));
+
+	mJupiterParticle->setPosition(Vector3(mData[5].distance, 0, 0));
+	mJupiterParticle->setVelocity(Vector3(0, mData[5].velocity, 0));
+
+	mSaturnParticle->setPosition(Vector3(mData[6].distance, 0, 0));
+	mSaturnParticle->setVelocity(Vector3(0, mData[6].velocity, 0));
+
+	mUranusParticle->setPosition(Vector3(mData[7].distance, 0, 0));
+	mUranusParticle->setVelocity(Vector3(0, mData[7].velocity, 0));
+
+	mNeptuneParticle->setPosition(Vector3(mData[8].distance, 0, 0));
+	mNeptuneParticle->setVelocity(Vector3(0, mData[8].velocity, 0));
+
+	mMoonParticle->setPosition(Vector3(mData[9].distance, 0, 0));
+	mMoonParticle->setVelocity(Vector3(0, mData[9].velocity, 0));
 }

@@ -1,26 +1,14 @@
-﻿Build started 2/8/2015 3:59:29 PM.
+﻿Build started 2/16/2015 4:41:09 PM.
      1>Project "C:\Users\Eric\Desktop\Game Physics\Physics Viewer\PhysicsEngine\PhysicsEngine.vcxproj" on node 2 (Build target(s)).
-     1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /sdl /O2 /Oi /Oy- /GL /D _MBCS /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Particle.cpp ParticleFactory.cpp ParticleForceRegistry.cpp ParticleGravity.cpp Vector3.cpp
-         Particle.cpp
-         ParticleFactory.cpp
-     1>ParticleFactory.cpp(10): warning C4305: 'argument' : truncation from 'int' to 'const real'
-     1>ParticleFactory.cpp(15): warning C4305: 'argument' : truncation from 'double' to 'const real'
-     1>ParticleFactory.cpp(16): warning C4305: 'argument' : truncation from 'double' to 'const real'
-     1>ParticleFactory.cpp(17): warning C4305: 'argument' : truncation from 'double' to 'const real'
-         ParticleForceRegistry.cpp
-         ParticleGravity.cpp
-     1>ParticleGravity.cpp(12): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
-         Vector3.cpp
-       Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Eric\Desktop\Game Physics\Physics Viewer\Release\PhysicsEngine.exe" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Eric\Desktop\Game Physics\Physics Viewer\Release\PhysicsEngine.pdb" /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Eric\Desktop\Game Physics\Physics Viewer\Release\PhysicsEngine.lib" /MACHINE:X86 /SAFESEH Release\Particle.obj
+     1>Lib:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\Lib.exe /OUT:"C:\Users\Eric\Desktop\Game Physics\Physics Viewer\Release\PhysicsEngine.lib" /NOLOGO /LTCG Release\Particle.obj
          Release\ParticleFactory.obj
          Release\ParticleForceRegistry.obj
          Release\ParticleGravity.obj
          Release\Vector3.obj
-     1>LINK : fatal error LNK1561: entry point must be defined
-     1>Done Building Project "C:\Users\Eric\Desktop\Game Physics\Physics Viewer\PhysicsEngine\PhysicsEngine.vcxproj" (Build target(s)) -- FAILED.
+         PhysicsEngine.vcxproj -> C:\Users\Eric\Desktop\Game Physics\Physics Viewer\Release\PhysicsEngine.lib
+     1>Done Building Project "C:\Users\Eric\Desktop\Game Physics\Physics Viewer\PhysicsEngine\PhysicsEngine.vcxproj" (Build target(s)).
 
-Build FAILED.
+Build succeeded.
 
-Time Elapsed 00:00:02.48
+Time Elapsed 00:00:00.29

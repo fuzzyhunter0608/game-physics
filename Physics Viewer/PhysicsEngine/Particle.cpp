@@ -24,7 +24,7 @@ void Particle::integrate(real duration)
 		mVelocity *= powf(mDamping, timestep);
 	}
 
-	std::cout << mVelocity.Length() << endl;
+	//std::cout << mVelocity.Length() << endl;
 
 	clearAccumluator();
 }

@@ -9,6 +9,9 @@ public:
 	GameObject();
 	~GameObject();
 
+	Vector3 GetDisplayPosition() { return mDisplayPosition; }
+	Particle* GetPhysics() { return mPhysicsEngine; }
+
 	void SetPhysics(Particle* physics) { mPhysicsEngine = physics; }
 	void SetModel(Model* model) { mModel = model; }
 	void SetScale(const Vector3 &scale) { mScale = scale; }

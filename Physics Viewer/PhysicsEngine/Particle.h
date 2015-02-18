@@ -15,6 +15,7 @@ public:
 	void setAcceleration(const Vector3 &acceleration) { mAcceleration = acceleration; }
 	void setAcceleration(const real x, const real y, const real z) { mAcceleration = Vector3(x, y, z); }
 	Vector3 getAcceleration() const { return mAcceleration; }
+	Vector3 getAccumForce() const { return forceAccum; }
 
 	void setDamping(const real damping) { mDamping = damping; }
 	real getDamping() const { return mDamping; }

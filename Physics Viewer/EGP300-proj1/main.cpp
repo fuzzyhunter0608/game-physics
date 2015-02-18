@@ -3,6 +3,7 @@
 #include <GL/glui.h>
 #include <GLFrustum.h>
 #include <string>
+#include <iostream>
 
 #include "Camera.h"
 #include "Model.h"
@@ -13,6 +14,7 @@
 #include "GameObject.h"
 #include "SolarSystem.h"
 #include "Color.h"
+#include "PlanetGUI.h"
 
 using namespace std;
 
@@ -33,11 +35,15 @@ Particle* sunParticle, *earthParticle;
 GameObject sunObject, earthObject;
 SolarSystem* solarSystem;
 
+GLUI* glui;
+
 ModelFactory modelFactory;
 ParticleFactory particleFactory;
 
 ParticleForceRegistry registry;
 ParticleGravity* gravityGenerator;
+
+PlanetGUI mercuryGUI, venusGUI, earthGUI, marsGUI, jupiterGUI, saturnGUI, uranusGUI, neptuneGUI, moonGUI;
 
 string filename;
 
@@ -52,7 +58,7 @@ void ChangeSize(int w, int h)
 
 	glViewport(0,0,width, height);
 
-	viewFrustum.SetPerspective(35.0f, (float)(width/height), 1.0f, 1000.0f);
+	viewFrustum.SetPerspective(35.0f, (float)(width/height), 1.0f, 10000.0f);
 }
 
 void setup()
@@ -74,6 +80,11 @@ void myInit()
 	setup();
 }
 
+void DrawDebugText()
+{
+	
+}
+
 void RenderScene(void)
 {
 	//Swap Colors
@@ -82,6 +93,8 @@ void RenderScene(void)
 	float posLight1[] = { 1.0f, 1.0f, 1.0f, 0.0f };
 
 	M3DMatrix44f mModel, mView, mModelView;
+
+	DrawDebugText();
 
 	//View
 	camera.getViewMatrix(mView);
@@ -140,12 +153,18 @@ void RenderScene(void)
 	shaderManager.UseStockShader(GLT_SHADER_POINT_LIGHT_DIFF, mModelView, viewFrustum.GetProjectionMatrix(), posLight1, Color::Red.GetColor());
 	solarSystem->GetNeptune()->Draw();
 
+	//Moon
+	solarSystem->GetMoon()->GetModelMatrix(mModel);
+	m3dMatrixMultiply44(mModelView, mView, mModel);
+	shaderManager.UseStockShader(GLT_SHADER_POINT_LIGHT_DIFF, mModelView, viewFrustum.GetProjectionMatrix(), posLight1, Color::Gray.GetColor());
+	solarSystem->GetMoon()->Draw();
+
 	glutSwapBuffers();
 }
 
 void Keys(unsigned char key, int x, int y)
 {
-	if(key == 27)
+	if(key == 27) //Escape
 		exit(0);
 
 	if((key == 'R') || (key == 'r'))
@@ -153,8 +172,12 @@ void Keys(unsigned char key, int x, int y)
 		glutWarpPointer(width/2, height/2);
 
 		camera.reset();
+		solarSystem->Reset();
+	}
 
-		planetModel->setRotation(Vector3::zero);
+	if ((key == 'P') || (key == 'p'))
+	{
+		cout << camera.getPosition().ToString() << endl;
 	}
 
 	if((key == 'W') || (key == 'w'))
@@ -173,6 +196,47 @@ void Keys(unsigned char key, int x, int y)
 	if((key == 'D') || (key == 'd'))
 	{
 		camera.moveRight(0.8f);
+	}
+
+	if ((key == '1'))
+	{
+		camera.setPosition(Vector3(-solarSystem->GetMercury()->GetDisplayPosition().x, -solarSystem->GetMercury()->GetDisplayPosition().y, camera.getPosition().z));
+	}
+	if ((key == '2'))
+	{
+		camera.setPosition(Vector3(-solarSystem->GetVenus()->GetDisplayPosition().x, -solarSystem->GetVenus()->GetDisplayPosition().y, camera.getPosition().z));
+	}
+	if ((key == '3'))
+	{
+		camera.setPosition(Vector3(-solarSystem->GetEarth()->GetDisplayPosition().x, -solarSystem->GetEarth()->GetDisplayPosition().y, camera.getPosition().z));
+	}
+	if ((key == '4'))
+	{
+		camera.setPosition(Vector3(-solarSystem->GetMars()->GetDisplayPosition().x, -solarSystem->GetMars()->GetDisplayPosition().y, camera.getPosition().z));
+	}
+	if ((key == '5'))
+	{
+		camera.setPosition(Vector3(-solarSystem->GetJupiter()->GetDisplayPosition().x, -solarSystem->GetJupiter()->GetDisplayPosition().y, camera.getPosition().z));
+	}
+	if ((key == '6'))
+	{
+		camera.setPosition(Vector3(-solarSystem->GetSaturn()->GetDisplayPosition().x, -solarSystem->GetSaturn()->GetDisplayPosition().y, camera.getPosition().z));
+	}
+	if ((key == '7'))
+	{
+		camera.setPosition(Vector3(-solarSystem->GetUranus()->GetDisplayPosition().x, -solarSystem->GetUranus()->GetDisplayPosition().y, camera.getPosition().z));
+	}
+	if ((key == '8'))
+	{
+		camera.setPosition(Vector3(-solarSystem->GetNeptune()->GetDisplayPosition().x, -solarSystem->GetNeptune()->GetDisplayPosition().y, camera.getPosition().z));
+	}
+	if ((key == '9'))
+	{
+		camera.setPosition(Vector3(-solarSystem->GetMoon()->GetDisplayPosition().x, -solarSystem->GetMoon()->GetDisplayPosition().y, camera.getPosition().z));
+	}
+	if ((key == '0'))
+	{
+		camera.setPosition(Vector3(-solarSystem->GetSun()->GetDisplayPosition().x, -solarSystem->GetSun()->GetDisplayPosition().y, camera.getPosition().z));
 	}
 }
 
@@ -201,14 +265,14 @@ void SpecialKeys(int key, int x, int y)
 
 void MouseMovement(int x, int y)
 {
-	/*static int lastX = width / 2;
+	static int lastX = width / 2;
 	static int lastY = height / 2;
 
 	float deltaX = (x - lastX) * 0.1f;
 	float deltaY = (y - lastY) * 0.1f;
 
-	rotateAroundViewYaxis += deltaX;
-	rotateAroundViewXaxis += deltaY;
+	camera.rotateX(deltaY);
+	camera.rotateY(deltaX);
 
 	lastX = x;
 	lastY = y;
@@ -219,7 +283,37 @@ void MouseMovement(int x, int y)
 		lastX = width/2;
 		lastY = height/2;
 		glutWarpPointer(lastX, lastY);
-	}*/
+	}
+}
+
+void UpdateGUI()
+{
+	mercuryGUI.setMassText(solarSystem->GetMercury()->GetPhysics()->getMass());
+	mercuryGUI.setVelocityText(solarSystem->GetMercury()->GetPhysics()->getVelocity());
+
+	venusGUI.setMassText(solarSystem->GetVenus()->GetPhysics()->getMass());
+	venusGUI.setVelocityText(solarSystem->GetVenus()->GetPhysics()->getVelocity());
+
+	earthGUI.setMassText(solarSystem->GetEarth()->GetPhysics()->getMass());
+	earthGUI.setVelocityText(solarSystem->GetEarth()->GetPhysics()->getVelocity());
+
+	marsGUI.setMassText(solarSystem->GetMars()->GetPhysics()->getMass());
+	marsGUI.setVelocityText(solarSystem->GetMars()->GetPhysics()->getVelocity());
+
+	jupiterGUI.setMassText(solarSystem->GetJupiter()->GetPhysics()->getMass());
+	jupiterGUI.setVelocityText(solarSystem->GetJupiter()->GetPhysics()->getVelocity());
+
+	saturnGUI.setMassText(solarSystem->GetSaturn()->GetPhysics()->getMass());
+	saturnGUI.setVelocityText(solarSystem->GetSaturn()->GetPhysics()->getVelocity());
+
+	uranusGUI.setMassText(solarSystem->GetUranus()->GetPhysics()->getMass());
+	uranusGUI.setVelocityText(solarSystem->GetUranus()->GetPhysics()->getVelocity());
+
+	neptuneGUI.setMassText(solarSystem->GetNeptune()->GetPhysics()->getMass());
+	neptuneGUI.setVelocityText(solarSystem->GetNeptune()->GetPhysics()->getVelocity());
+
+	moonGUI.setMassText(solarSystem->GetMoon()->GetPhysics()->getMass());
+	moonGUI.setVelocityText(solarSystem->GetMoon()->GetPhysics()->getVelocity());
 }
 
 void myUpdate()
@@ -232,7 +326,48 @@ void myUpdate()
 
 	solarSystem->Update(deltaTime);
 
+	UpdateGUI();
+
 	glutPostRedisplay();
+}
+
+void InitGUI()
+{
+	glui->add_statictext("Mercury");
+	mercuryGUI.mpMassText = glui->add_statictext("0");
+	mercuryGUI.mpVelocityText = glui->add_statictext("0");
+
+	glui->add_statictext("Venus");
+	venusGUI.mpMassText = glui->add_statictext("0");
+	venusGUI.mpVelocityText = glui->add_statictext("0");
+
+	glui->add_statictext("Earth");
+	earthGUI.mpMassText = glui->add_statictext("0");
+	earthGUI.mpVelocityText = glui->add_statictext("0");
+
+	glui->add_statictext("Mars");
+	marsGUI.mpMassText = glui->add_statictext("0");
+	marsGUI.mpVelocityText = glui->add_statictext("0");
+
+	glui->add_statictext("Jupiter");
+	jupiterGUI.mpMassText = glui->add_statictext("0");
+	jupiterGUI.mpVelocityText = glui->add_statictext("0");
+
+	glui->add_statictext("Saturn");
+	saturnGUI.mpMassText = glui->add_statictext("0");
+	saturnGUI.mpVelocityText = glui->add_statictext("0");
+
+	glui->add_statictext("Uranus");
+	uranusGUI.mpMassText = glui->add_statictext("0");
+	uranusGUI.mpVelocityText = glui->add_statictext("0");
+
+	glui->add_statictext("Neptune");
+	neptuneGUI.mpMassText = glui->add_statictext("0");
+	neptuneGUI.mpVelocityText = glui->add_statictext("0");
+
+	glui->add_statictext("Moon");
+	moonGUI.mpMassText = glui->add_statictext("0");
+	moonGUI.mpVelocityText = glui->add_statictext("0");
 }
 
 int main(int argc, char* argv[])
@@ -261,9 +396,9 @@ int main(int argc, char* argv[])
 	glutPassiveMotionFunc(MouseMovement);
 
 	GLUI_Master.set_glutIdleFunc(myUpdate);
-	GLUI *glui = GLUI_Master.create_glui("GUI");
+	glui = GLUI_Master.create_glui("GUI");
 	glui->set_main_gfx_window(windowId);
-	glui->add_button("Test");
+	InitGUI();
 
 	GLenum err = glewInit();
 	if (GLEW_OK != err)

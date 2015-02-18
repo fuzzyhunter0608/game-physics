@@ -1,27 +1,85 @@
-﻿Build started 2/8/2015 3:59:32 PM.
+﻿Build started 2/16/2015 4:41:19 PM.
      1>Project "C:\Users\Eric\Desktop\Game Physics\Physics Viewer\EGP300-proj1\EGP300-proj1.vcxproj" on node 2 (Build target(s)).
-     1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Release\PhysicsViewer.pch" /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Camera.cpp Color.cpp GameObject.cpp main.cpp Model.cpp ModelFactory.cpp Moveable.cpp SolarSystem.cpp tinyxml2.cpp
-         Camera.cpp
-     1>Camera.cpp(47): fatal error C1010: unexpected end of file while looking for precompiled header. Did you forget to add '#include "stdafx.h"' to your source?
-         Color.cpp
-     1>Color.cpp(18): fatal error C1010: unexpected end of file while looking for precompiled header. Did you forget to add '#include "stdafx.h"' to your source?
-         GameObject.cpp
-     1>GameObject.cpp(28): fatal error C1010: unexpected end of file while looking for precompiled header. Did you forget to add '#include "stdafx.h"' to your source?
-         main.cpp
-     1>main.cpp(314): fatal error C1010: unexpected end of file while looking for precompiled header. Did you forget to add '#include "stdafx.h"' to your source?
-         Model.cpp
-     1>Model.cpp(159): fatal error C1010: unexpected end of file while looking for precompiled header. Did you forget to add '#include "stdafx.h"' to your source?
-         ModelFactory.cpp
-     1>ModelFactory.cpp(261): fatal error C1010: unexpected end of file while looking for precompiled header. Did you forget to add '#include "stdafx.h"' to your source?
-         Moveable.cpp
-     1>Moveable.cpp(113): fatal error C1010: unexpected end of file while looking for precompiled header. Did you forget to add '#include "stdafx.h"' to your source?
-         SolarSystem.cpp
-     1>SolarSystem.cpp(82): fatal error C1010: unexpected end of file while looking for precompiled header. Did you forget to add '#include "stdafx.h"' to your source?
-         tinyxml2.cpp
-     1>tinyxml2.cpp(2158): fatal error C1010: unexpected end of file while looking for precompiled header. Did you forget to add '#include "stdafx.h"' to your source?
+     1>Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Eric\Desktop\Game Physics\Physics Viewer\Release\PhysicsViewer.exe" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib ../Debug/PhysicsEngine.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Eric\Desktop\Game Physics\Physics Viewer\Release\PhysicsViewer.pdb" /SUBSYSTEM:CONSOLE /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Eric\Desktop\Game Physics\Physics Viewer\Release\PhysicsViewer.lib" /MACHINE:X86 /SAFESEH Release\Camera.obj
+         Release\Color.obj
+         Release\GameObject.obj
+         Release\Debug.obj
+         Release\main.obj
+         Release\Model.obj
+         Release\ModelFactory.obj
+         Release\Moveable.obj
+         Release\PlanetGUI.obj
+         Release\SolarSystem.obj
+         Release\tinyxml2.obj
+         libs\freeglut.lib
+         libs\freeglut_static.lib
+         libs\gltools.lib
+         libs\glui32.lib
+     1>PhysicsEngine.lib(Particle.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '2' doesn't match value '0' in Camera.obj
+     1>PhysicsEngine.lib(Particle.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MDd_DynamicDebug' doesn't match value 'MD_DynamicRelease' in Camera.obj
+     1>PhysicsEngine.lib(Particle.obj) : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/OPT:ICF' specification
+     1>PhysicsEngine.lib(Vector3.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '2' doesn't match value '0' in Camera.obj
+     1>PhysicsEngine.lib(Vector3.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MDd_DynamicDebug' doesn't match value 'MD_DynamicRelease' in Camera.obj
+     1>PhysicsEngine.lib(ParticleGravity.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '2' doesn't match value '0' in Camera.obj
+     1>PhysicsEngine.lib(ParticleGravity.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MDd_DynamicDebug' doesn't match value 'MD_DynamicRelease' in Camera.obj
+     1>PhysicsEngine.lib(ParticleForceRegistry.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '2' doesn't match value '0' in Camera.obj
+     1>PhysicsEngine.lib(ParticleForceRegistry.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MDd_DynamicDebug' doesn't match value 'MD_DynamicRelease' in Camera.obj
+     1>PhysicsEngine.lib(ParticleFactory.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '2' doesn't match value '0' in Camera.obj
+     1>PhysicsEngine.lib(ParticleFactory.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MDd_DynamicDebug' doesn't match value 'MD_DynamicRelease' in Camera.obj
+     1>glui32.lib(glui.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '2' doesn't match value '0' in Camera.obj
+     1>glui32.lib(glui.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MDd_DynamicDebug' doesn't match value 'MD_DynamicRelease' in Camera.obj
+     1>glui32.lib(glui_add_controls.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '2' doesn't match value '0' in Camera.obj
+     1>glui32.lib(glui_add_controls.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MDd_DynamicDebug' doesn't match value 'MD_DynamicRelease' in Camera.obj
+     1>glui32.lib(glui_string.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '2' doesn't match value '0' in Camera.obj
+     1>glui32.lib(glui_string.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MDd_DynamicDebug' doesn't match value 'MD_DynamicRelease' in Camera.obj
+     1>glui32.lib(glui_node.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '2' doesn't match value '0' in Camera.obj
+     1>glui32.lib(glui_node.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MDd_DynamicDebug' doesn't match value 'MD_DynamicRelease' in Camera.obj
+     1>glui32.lib(glui_bitmaps.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '2' doesn't match value '0' in Camera.obj
+     1>glui32.lib(glui_bitmaps.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MDd_DynamicDebug' doesn't match value 'MD_DynamicRelease' in Camera.obj
+     1>glui32.lib(glui_window.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '2' doesn't match value '0' in Camera.obj
+     1>glui32.lib(glui_window.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MDd_DynamicDebug' doesn't match value 'MD_DynamicRelease' in Camera.obj
+     1>glui32.lib(glui_control.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '2' doesn't match value '0' in Camera.obj
+     1>glui32.lib(glui_control.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MDd_DynamicDebug' doesn't match value 'MD_DynamicRelease' in Camera.obj
+     1>glui32.lib(glui_panel.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '2' doesn't match value '0' in Camera.obj
+     1>glui32.lib(glui_panel.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MDd_DynamicDebug' doesn't match value 'MD_DynamicRelease' in Camera.obj
+     1>glui32.lib(glui_button.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '2' doesn't match value '0' in Camera.obj
+     1>glui32.lib(glui_button.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MDd_DynamicDebug' doesn't match value 'MD_DynamicRelease' in Camera.obj
+     1>glui32.lib(glui_checkbox.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '2' doesn't match value '0' in Camera.obj
+     1>glui32.lib(glui_checkbox.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MDd_DynamicDebug' doesn't match value 'MD_DynamicRelease' in Camera.obj
+     1>glui32.lib(glui_column.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '2' doesn't match value '0' in Camera.obj
+     1>glui32.lib(glui_column.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MDd_DynamicDebug' doesn't match value 'MD_DynamicRelease' in Camera.obj
+     1>glui32.lib(glui_rollout.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '2' doesn't match value '0' in Camera.obj
+     1>glui32.lib(glui_rollout.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MDd_DynamicDebug' doesn't match value 'MD_DynamicRelease' in Camera.obj
+     1>glui32.lib(glui_edittext.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '2' doesn't match value '0' in Camera.obj
+     1>glui32.lib(glui_edittext.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MDd_DynamicDebug' doesn't match value 'MD_DynamicRelease' in Camera.obj
+     1>glui32.lib(glui_radio.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '2' doesn't match value '0' in Camera.obj
+     1>glui32.lib(glui_radio.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MDd_DynamicDebug' doesn't match value 'MD_DynamicRelease' in Camera.obj
+     1>glui32.lib(glui_separator.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '2' doesn't match value '0' in Camera.obj
+     1>glui32.lib(glui_separator.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MDd_DynamicDebug' doesn't match value 'MD_DynamicRelease' in Camera.obj
+     1>glui32.lib(glui_spinner.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '2' doesn't match value '0' in Camera.obj
+     1>glui32.lib(glui_spinner.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MDd_DynamicDebug' doesn't match value 'MD_DynamicRelease' in Camera.obj
+     1>glui32.lib(glui_statictext.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '2' doesn't match value '0' in Camera.obj
+     1>glui32.lib(glui_statictext.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MDd_DynamicDebug' doesn't match value 'MD_DynamicRelease' in Camera.obj
+     1>glui32.lib(glui_listbox.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '2' doesn't match value '0' in Camera.obj
+     1>glui32.lib(glui_listbox.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MDd_DynamicDebug' doesn't match value 'MD_DynamicRelease' in Camera.obj
+     1>glui32.lib(glui_rotation.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '2' doesn't match value '0' in Camera.obj
+     1>glui32.lib(glui_rotation.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MDd_DynamicDebug' doesn't match value 'MD_DynamicRelease' in Camera.obj
+     1>glui32.lib(glui_translation.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '2' doesn't match value '0' in Camera.obj
+     1>glui32.lib(glui_translation.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MDd_DynamicDebug' doesn't match value 'MD_DynamicRelease' in Camera.obj
+     1>glui32.lib(glui_mouse_iaction.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '2' doesn't match value '0' in Camera.obj
+     1>glui32.lib(glui_mouse_iaction.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MDd_DynamicDebug' doesn't match value 'MD_DynamicRelease' in Camera.obj
+     1>glui32.lib(algebra3.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '2' doesn't match value '0' in Camera.obj
+     1>glui32.lib(algebra3.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MDd_DynamicDebug' doesn't match value 'MD_DynamicRelease' in Camera.obj
+     1>glui32.lib(arcball.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '2' doesn't match value '0' in Camera.obj
+     1>glui32.lib(arcball.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MDd_DynamicDebug' doesn't match value 'MD_DynamicRelease' in Camera.obj
+     1>glui32.lib(quaternion.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '2' doesn't match value '0' in Camera.obj
+     1>glui32.lib(quaternion.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MDd_DynamicDebug' doesn't match value 'MD_DynamicRelease' in Camera.obj
+     1>LINK : warning LNK4098: defaultlib 'MSVCRTD' conflicts with use of other libs; use /NODEFAULTLIB:library
+     1>LINK : warning LNK4098: defaultlib 'LIBCMT' conflicts with use of other libs; use /NODEFAULTLIB:library
+     1>C:\Users\Eric\Desktop\Game Physics\Physics Viewer\Release\PhysicsViewer.exe : fatal error LNK1319: 58 mismatches detected
      1>Done Building Project "C:\Users\Eric\Desktop\Game Physics\Physics Viewer\EGP300-proj1\EGP300-proj1.vcxproj" (Build target(s)) -- FAILED.
 
 Build FAILED.
 
-Time Elapsed 00:00:00.17
+Time Elapsed 00:00:00.42
