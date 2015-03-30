@@ -1,0 +1,31 @@
+﻿Build started 3/30/2015 3:56:11 PM.
+     1>Project "C:\Users\Eric\Desktop\Game Physics\Mass Aggregate\PhysicsEngine\PhysicsEngine.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt ParticleTetrahedron.cpp
+         ParticleTetrahedron.cpp
+       Lib:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\Lib.exe /OUT:"C:\Users\Eric\Desktop\Game Physics\Mass Aggregate\Debug\PhysicsEngine.lib" /NOLOGO Debug\Particle.obj
+         Debug\ParticleBungee.obj
+         Debug\ParticleCable.obj
+         Debug\ParticleContact.obj
+         Debug\ParticleContactResolver.obj
+         Debug\ParticleCube.obj
+         Debug\ParticleFactory.obj
+         Debug\ParticleForceRegistry.obj
+         Debug\ParticleGravity.obj
+         Debug\ParticleGravityEarth.obj
+         Debug\ParticleGround.obj
+         Debug\ParticleLink.obj
+         Debug\ParticleRod.obj
+         Debug\ParticleShape.obj
+         Debug\ParticleSpring.obj
+         Debug\ParticleTetrahedron.obj
+         Debug\ParticleTriangle.obj
+         Debug\ParticleWorld.obj
+         Debug\Vector3.obj
+         PhysicsEngine.vcxproj -> C:\Users\Eric\Desktop\Game Physics\Mass Aggregate\Debug\PhysicsEngine.lib
+     1>Done Building Project "C:\Users\Eric\Desktop\Game Physics\Mass Aggregate\PhysicsEngine\PhysicsEngine.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:00.61
